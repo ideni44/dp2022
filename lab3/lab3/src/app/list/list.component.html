@@ -1,0 +1,17 @@
+<h2>{{title}}</h2>
+<ul>
+    <li *ngFor="let ani of animalsList" (click)="onSelect(ani)"
+    >Title: {{ani.title}}, age: {{ani.age}}, info: {{ani.info}}
+    <span (click)="deleteAnimal(ani)"> X </span>
+    </li>
+</ul>
+
+<h3 (click)="showAddForm=!showAddForm">Add Animal</h3>
+<form *ngIf="showAddForm" #form1="ngForm" (ngSubmit)="addAnimal(form1.value)">
+    <input type="text" name="title"  ngModel=""><br><br>
+    <input type="number" name="age" ngModel=23><br><br>
+    <input type="text" name="info"  ngModel><br><br>
+    <input type="submit" value="Add Animal">
+</form>
+
+<app-update [animal]="selectedAnimal" (updated)="updateAnimals()"></app-update>
